@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vue-deployment
+spec:
+  replicas: {{.Values.depl.replicas}}
+  selector:
+    matchLabels:
+      app: vue-frontend
+  template:
+    metadata:
+      labels:
+        app: vue-frontend
+    spec:
+      containers:
+      - name:  vue-coiner
+        image: {{.Values.depl.image}}
+        ports:
+        - containerPort: 80
