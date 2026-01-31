@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+    --color-background: #0F172A;
+    /* deep navy - clean and modern */
+    --color-surface: #1E293B;
+    /* dark slate-blue for cards */
+    --color-primary: #FFFFFF;
+    /* sky blue - fresh and financial */
+    --color-success: #4ADE80;
+    /* mint green - soft and positive */
+    --color-danger: #F87171;
+    /* soft red - alert without harshness */
+    --color-text: #FFFFFF;
+    /* very light gray - clear on dark bg */
+    --color-muted: #94A3B8;
+    /* muted blue-gray - for labels, hints */
+    --color-border: #334155;
+    /* subtle border contrast */
+    --color-hover-bg: #F1F5F9;
+    /* light gray */
+    --color-hover-text: #0F172A;
+    /* dark text on hover */
+
+}

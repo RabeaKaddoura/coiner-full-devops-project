@@ -1,0 +1,9 @@
+//constant keys used for localstorage
+export const ACCESS_TOKEN = 'access';
+export const REFRESH_TOKEN = 'refresh';
+export const Username = 'username';
+export const isLoggedIn = 'isloggedin'
+export const customWallet = 'customWallet'
+export const mainWallet = 'mainWallet'
+export const MAIN_WALLET_ID = 'mainWalletId'
+export const CUS_WALLET_ID = 'cusWalletId'
