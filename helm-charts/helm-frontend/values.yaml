@@ -1,8 +1,0 @@
-depl:
-  image: 841162682141.dkr.ecr.us-east-1.amazonaws.com/coiner:vue-v1.0
-  replicas: 3
-
-
-
-
-

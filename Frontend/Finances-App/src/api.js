@@ -4,7 +4,7 @@ import { isTokenExpired, tryRefresh, checkLogIn } from "./components/auth";
 
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL //saves us the trouble of typing the backend url over and over.
+    baseURL: '__VITE_API_URL__' //saves us the trouble of typing the backend url over and over.
 });
 
 api.interceptors.request.use(async (config) => {

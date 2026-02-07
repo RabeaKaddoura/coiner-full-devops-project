@@ -4,7 +4,7 @@ import NavBar from '@/components/NavBar.vue';
 import SideBar from '@/components/SideBar.vue';
 import TopPanel from '@/components/TopPanel.vue';
 import DataTable from '@/components/DataTable.vue';
-import Dashboard from '@/components/Dashboard.vue';
+import Dashboard from '@/components/dashboard.vue';
 import Reports from '@/components/Reports.vue';
 
 
