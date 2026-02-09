@@ -23,22 +23,22 @@ jobs:
           terraform_version: ${{ vars.TF_VERSION }}
       
       - name: Terraform Init #downloads required terrform modules, dependincies, and sets up backend
-        working-directory: ./terraform
+        working-directory: ./Terraform
         run: terraform init
       
       - name: Terraform Format Check #checks code formatting. Doesn't fail on error
-        working-directory: ./terraform
+        working-directory: ./Terraform
         run: terraform fmt -check
         continue-on-error: true
       
       - name: Terraform Validate #validates syntax and configurations
-        working-directory: ./terraform
+        working-directory: ./Terraform
         run: terraform validate
       
       - name: Terraform Plan #generates and saves infra plan
-        working-directory: ./terraform
+        working-directory: ./Terraform
         run: terraform plan -out=tfplan
       
       - name: Terraform Apply #provisions infra
-        working-directory: ./terraform
+        working-directory: ./Terraform
         run: terraform apply -auto-approve tfplan
