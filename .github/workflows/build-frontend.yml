@@ -43,16 +43,22 @@ jobs:
 
   update-helm: #updates Helm values.yaml with new frontend image URL created in the first job
     needs: build-and-push
+    if: github.actor != 'github-actions[bot]' #loop prevention
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install yq
+        run: |
+          sudo wget -O /usr/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo chmod +x /usr/bin/yq
+
       - name: Change Helm values for frontend image URL
         run: |
-          sed -i "s|image:.*|image: ${{ needs.build-and-push.outputs.image_url }}|g" Helm-Charts/frontend/values.yaml
+          yq e -i ".depl.image = \"${{ needs.build-and-push.outputs.image_url }}\"" Helm-Charts/frontend/values.yaml
 
       - name: Commit & Push changes #commit and push the new Helm values.yaml to repo
-        uses: actions-js/push@master
+        uses: ad-m/github-push-action@v1.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: "main"
+          branch: main
