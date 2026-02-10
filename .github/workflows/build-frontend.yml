@@ -57,6 +57,13 @@ jobs:
         run: |
           yq e -i ".depl.image = \"${{ needs.build-and-push.outputs.image_url }}\"" Helm-Charts/frontend/values.yaml
 
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add Helm-Charts/frontend/values.yaml
+          git commit -m "chore: update frontend image" || echo "No changes to commit"
+
       - name: Commit & Push changes #commit and push the new Helm values.yaml to repo
         uses: actions-js/push@master
         with:
