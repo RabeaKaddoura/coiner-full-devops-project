@@ -1,0 +1,47 @@
+name: Building and pushing frontend image to ECR
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "Frontend/**"
+  workflow_dispatch:
+
+jobs:
+  build-and-push:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials #authenticating to AWS
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Login to Amazon ECR #authenticating to ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: coiner-ecr
+          IMAGE_TAG: ${{ github.sha }}
+        run: | #build a docker image and push it to ECR
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./Frontend/Finances-App 
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+      - name: Change Helm values for frontend image URL
+        run: | #change frontend image URL in Helm values.yaml
+          sed -i "s|image:.*|image: ${{ steps.build-image.outputs.image }}|g" Helm-Charts/frontend/values.yaml
+
+      - name: Commit & Push changes #commit and push the new Helm values.yaml to repo
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: "main"
