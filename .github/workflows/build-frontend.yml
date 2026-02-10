@@ -58,7 +58,7 @@ jobs:
           yq e -i ".depl.image = \"${{ needs.build-and-push.outputs.image_url }}\"" Helm-Charts/frontend/values.yaml
 
       - name: Commit & Push changes #commit and push the new Helm values.yaml to repo
-        uses: ad-m/github-push-action@v1.0.0
+        uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
