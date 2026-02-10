@@ -48,14 +48,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install yq
-        run: |
-          sudo wget -O /usr/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
-          sudo chmod +x /usr/bin/yq
-
       - name: Change Helm values for frontend image URL
         run: |
-          yq e -i ".depl.image = \"${{ needs.build-and-push.outputs.image_url }}\"" Helm-Charts/frontend/values.yaml
+          sed -i "s|^ image:.*|  image=${{ needs.build-and-push.outputs.image_url }}|" Helm-Charts/frontend/values.yaml
 
       - name: Commit changes
         run: |
