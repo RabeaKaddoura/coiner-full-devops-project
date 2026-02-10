@@ -15,7 +15,7 @@ jobs:
     if: github.actor != 'github-actions[bot]' #loop prevention
     runs-on: ubuntu-latest
     outputs:
-      image_url: ${{steps.build-image.outputs.image}}
+      image_url: ${{ steps.build-image.outputs.image }}
     steps:
       - uses: actions/checkout@v4
 
