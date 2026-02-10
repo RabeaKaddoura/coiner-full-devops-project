@@ -1,4 +1,5 @@
 name: Provisioning AWS infrastructure with Terraform
+
 on:
   push:
     branches: ["main"]
