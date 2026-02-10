@@ -64,8 +64,8 @@ jobs:
           git add Helm-Charts/frontend/values.yaml
           git commit -m "chore: update frontend image" || echo "No changes to commit"
 
-      - name: Commit & Push changes #commit and push the new Helm values.yaml to repo
-        uses: actions-js/push@master
+      - name: Push changes
+        uses: ad-m/github-push-action@v1.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
