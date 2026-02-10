@@ -1,5 +1,5 @@
 depl:
-  image: 844586871941.dkr.ecr.us-east-1.amazonaws.com/coiner-ecr:frontend-v1.03 #edit
+  image: 
   replicas: 2
 
 
