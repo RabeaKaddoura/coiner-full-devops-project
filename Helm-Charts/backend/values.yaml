@@ -1,15 +1,15 @@
 depl:
   image: 844586871941.dkr.ecr.us-east-1.amazonaws.com/coiner-ecr:backend-v1.04 #edit
-  replicas: 2 
+  replicas: 2
   cpuReq: 100m
   memoryReq: 256Mi
   cpuLim: 500m
-  memoryLim: 512Mi 
+  memoryLim: 512Mi
 
 hpa:
- minReplicas: 2
- maxReplicas: 3
- targetCPU: 70
+  minReplicas: 2
+  maxReplicas: 3
+  targetCPU: 70
 
 backendSecret:
   DJANGO_SECRET_KEY: "*5!b1h!(_7y1%8*w+stns0=_zvl+#%1w-%zgir5!)=6t5h2huh"
