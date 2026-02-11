@@ -35,9 +35,9 @@ jobs:
           ECR_REPOSITORY: coiner-ecr
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./Backend
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:backend-$IMAGE_TAG ./Backend
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:backend-$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:backend-$IMAGE_TAG" >> $GITHUB_OUTPUT
 
       - name: Change Helm value for backend image URL
         run: |
