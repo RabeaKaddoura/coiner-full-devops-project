@@ -1,0 +1,57 @@
+name: Building and pushing backend image to ECR
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "Backend/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write #to write to repo
+
+jobs:
+  build-and-push: #builds and pushes image to ECR
+    if: github.actor != 'github-actions[bot]' #loop prevention
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials #authenticating to AWS
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Login to Amazon ECR #authenticating to ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: coiner-ecr
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./Backend
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+      - name: Change Helm value for backend image URL
+        run: |
+          sed -i 's|^  image:.*|  image: ${{ steps.build-image.outputs.image }}|' Helm-Charts/backend/values.yaml
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add Helm-Charts/backend/values.yaml
+          git commit -m "chore: update frontend image" || echo "No changes to commit"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v1.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
