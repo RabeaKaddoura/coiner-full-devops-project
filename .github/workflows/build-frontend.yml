@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: write #to write to repo
 
 jobs:
   build-and-push: #builds and pushes image to ECR
@@ -37,9 +37,11 @@ jobs:
           ECR_REPOSITORY: coiner-ecr
           IMAGE_TAG: ${{ github.sha }}
         run: |
+          IMAGE_URL="${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}"
+
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./Frontend/Finances-App 
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+          echo "image=${IMAGE_URL}" >> $GITHUB_OUTPUT
 
   update-helm: #updates Helm values.yaml with new frontend image URL created in the first job
     needs: build-and-push
@@ -48,7 +50,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Change Helm values for frontend image URL
+      - name: Change Helm value for frontend image URL
         run: |
           sed -i 's|^  image:.*|  image: ${{ needs.build-and-push.outputs.image_url }}|' Helm-Charts/frontend/values.yaml
 
