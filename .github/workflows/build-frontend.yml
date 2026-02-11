@@ -50,7 +50,7 @@ jobs:
 
       - name: Change Helm values for frontend image URL
         run: |
-          sed -i "s|^ image:.*|  image=${{ needs.build-and-push.outputs.image_url }}|" Helm-Charts/frontend/values.yaml
+          sed -i 's|^  image:.*|  image: ${{ needs.build-and-push.outputs.image_url }}|' Helm-Charts/frontend/values.yaml
 
       - name: Commit changes
         run: |
