@@ -1,5 +1,5 @@
 depl:
-  image: 844586871941.dkr.ecr.us-east-1.amazonaws.com/coiner-ecr:backend-v1.04 #edit
+  image: 844586871941.dkr.ecr.us-east-1.amazonaws.com/coiner-ecr:backend-34cd0e324a28f0f69a6183ce14e3ec5b048b3430
   replicas: 2 
   cpuReq: 100m
   memoryReq: 256Mi
