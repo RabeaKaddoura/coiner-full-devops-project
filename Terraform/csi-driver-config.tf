@@ -9,6 +9,12 @@ data "aws_iam_policy_document" "secrets_csi_assume_role_policy" {
       values   = ["system:serviceaccount:default:backend-sa"] #namespace here needs to match secretproviderclass's namespace (it's default here) 
     }
 
+    condition {
+      test     = "StringEquals"
+      variable = "${replace(module.eks.cluster_oidc_issuer_url, "https://", "")}:aud"
+      values   = ["sts.amazonaws.com"]
+    }
+
     principals {
       identifiers = [module.eks.oidc_provider_arn]
       type        = "Federated"
