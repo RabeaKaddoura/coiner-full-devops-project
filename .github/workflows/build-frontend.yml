@@ -1,4 +1,4 @@
-name: Building and pushing frontend image to ECR
+name: Build Frontend
 
 on:
   push:
@@ -34,13 +34,13 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: coiner-ecr
           IMAGE_TAG: ${{ github.sha }}
-        run: |
+        run: | #building and pushing image
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:frontend-$IMAGE_TAG ./Frontend/Finances-App 
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:frontend-$IMAGE_TAG
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:frontend-$IMAGE_TAG" >> $GITHUB_OUTPUT
 
       - name: Change Helm value for frontend image URL
-        run: |
+        run: | #using sed command to change helm values in place
           sed -i 's|^  image:.*|  image: ${{ steps.build-image.outputs.image }}|' Helm-Charts/frontend/values.yaml
 
       - name: Commit changes

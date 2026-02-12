@@ -1,4 +1,4 @@
-name: Provisioning AWS infrastructure with Terraform
+name: Provision AWS infrastructure
 
 on:
   push:
