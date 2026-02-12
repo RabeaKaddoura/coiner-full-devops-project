@@ -5,7 +5,7 @@ data "aws_iam_policy_document" "secrets_csi_assume_role_policy" {
 
     condition {
       test     = "StringEquals"
-      variable = "${replace(aws_iam_openid_connect_provider.eks.url, "https://", "")}:sub"
+      variable = "${replace(module.eks.oidc_provider_arn, "https://", "")}:sub"
       values   = ["system:serviceaccount:default:backend-sa"]
     }
 
