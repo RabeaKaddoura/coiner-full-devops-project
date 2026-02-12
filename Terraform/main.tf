@@ -160,6 +160,7 @@ module "postgres" {
   source = "./modules/rds"
 
   prefix         = var.prefix
+  db_name        = var.db_name
   subnet_ids     = module.network.private_subnet_ids
   vpc_id         = module.network.vpc_id
   eks_node_sg_id = module.eks.node_security_group_id
@@ -167,6 +168,18 @@ module "postgres" {
   db_password    = random_password.db_password.result
 
   depends_on = [module.eks]
+}
+
+
+#secret store
+
+module "secret_store" {
+  source      = "./modules/secret-store"
+  db_name     = module.postgres.db_name
+  db_username = module.postgres.db_username
+  db_endpoint = module.postgres.db_endpoint
+  db_port     = module.postgres.db_port
+  db_password = random_password.db_password.result
 }
 
 

@@ -9,7 +9,7 @@ resource "aws_db_subnet_group" "default" {
 
 resource "aws_db_instance" "db" {
   allocated_storage   = 20
-  db_name             = replace(var.prefix, "-", "")
+  db_name             = replace(var.db_name, "-", "")
   engine              = "postgres"
   engine_version      = "17.6"
   instance_class      = "db.t3.micro"

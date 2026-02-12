@@ -77,3 +77,9 @@ variable "db_username" {
   type        = string
   default     = "adminuser"
 }
+
+variable "db_name" {
+  description = "database name"
+  type        = string
+  default     = "coiner"
+}

@@ -1,0 +1,16 @@
+resource "aws_secretsmanager_secret" "store" { #secret store resource
+  name                    = "/prod/backend"
+  description             = "Database credentials for backend application"
+  recovery_window_in_days = 7
+}
+
+resource "aws_secretsmanager_secret_version" "values" { #populating secret store
+  secret_id = aws_secretsmanager_secret.store.id
+  secret_string = jsonencode({
+    username = var.db_username
+    password = var.db_password
+    host     = var.db_endpoint
+    port     = var.db_port
+    dbname   = var.db_name
+  })
+}
