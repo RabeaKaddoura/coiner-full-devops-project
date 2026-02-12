@@ -110,8 +110,9 @@ module "eks_blueprints_addons" {
     }
   }
 
-  enable_aws_load_balancer_controller = true
-  enable_metrics_server               = true
+  enable_aws_load_balancer_controller          = true
+  enable_metrics_server                        = true
+  enable_secrets_store_csi_driver_provider_aws = true
 
   aws_load_balancer_controller = { #load balancer controller configuration
     repository    = "https://aws.github.io/eks-charts"
