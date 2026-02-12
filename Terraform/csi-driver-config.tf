@@ -5,7 +5,7 @@ data "aws_iam_policy_document" "secrets_csi_assume_role_policy" {
 
     condition {
       test     = "StringEquals"
-      variable = "${replace(module.eks.oidc_provider_arn, "https://", "")}:sub"
+      variable = "${replace(module.eks.oidc_provider_url, "https://", "")}:sub"
       values   = ["system:serviceaccount:default:backend-sa"] #namespace here needs to match secretproviderclass's namespace (it's default here) 
     }
 
