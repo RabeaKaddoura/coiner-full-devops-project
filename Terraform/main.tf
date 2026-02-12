@@ -115,6 +115,11 @@ module "eks_blueprints_addons" {
   enable_secrets_store_csi_driver              = true
   enable_secrets_store_csi_driver_provider_aws = true
 
+  secrets_store_csi_driver = {
+    enable_sync = true # optional: sync secrets to K8s secrets
+  }
+
+
   aws_load_balancer_controller = { #load balancer controller configuration
     repository    = "https://aws.github.io/eks-charts"
     chart         = "aws-load-balancer-controller"
