@@ -1,3 +1,3 @@
 depl:
-  image: 844586871941.dkr.ecr.us-east-1.amazonaws.com/coiner-ecr:frontend-c1f48b20e2f155ab0c471b9da7627426afd9acdc
+  image: 844586871941.dkr.ecr.us-east-1.amazonaws.com/coiner-ecr:frontend-f6502d3817ccd6dd6a330c0503ed06c876b30b49
   replicas: 2
