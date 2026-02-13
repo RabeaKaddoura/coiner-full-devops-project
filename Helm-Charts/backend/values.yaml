@@ -1,5 +1,5 @@
 depl:
-  image: 844586871941.dkr.ecr.us-east-1.amazonaws.com/coiner-ecr:backend-44f43c9563f29c29874cf5e4c5efd897d731c0b6
+  image: 844586871941.dkr.ecr.us-east-1.amazonaws.com/coiner-ecr:backend-374b544d134807ce57ed792b52868da8c5f78a14
   replicas: 2
 
   cpuReq: 100m
