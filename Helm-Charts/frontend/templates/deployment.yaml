@@ -19,4 +19,4 @@ spec:
             - containerPort: 80
           env:
             - name: VITE_API_URL
-              value: "k8s-default-albingre-d956df7538-1791620062.us-east-1.elb.amazonaws.com/api"
+              value: "/api" #edit
