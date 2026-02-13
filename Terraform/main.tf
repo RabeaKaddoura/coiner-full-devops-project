@@ -181,6 +181,7 @@ module "postgres" {
 
 module "secret_store" {
   source      = "./modules/secret-store"
+  secret_name = var.secret_name
   db_name     = module.postgres.db_name
   db_username = module.postgres.db_username
   db_endpoint = module.postgres.db_endpoint

@@ -83,3 +83,12 @@ variable "db_name" {
   type        = string
   default     = "coiner"
 }
+
+
+#secret store
+
+variable "secret_name" {
+  description = "secret store name"
+  type        = string
+  default     = "/production/backend"
+}
