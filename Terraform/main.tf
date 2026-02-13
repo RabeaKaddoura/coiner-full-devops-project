@@ -116,7 +116,7 @@ module "eks_blueprints_addons" {
   enable_secrets_store_csi_driver_provider_aws = true
 
   secrets_store_csi_driver = {
-    enable_sync = true # optional: sync secrets to K8s secrets
+    enable_sync = true
   }
 
 
