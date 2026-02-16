@@ -1,3 +1,5 @@
+variable "prefix" {}
+
 variable "secret_name" {}
 
 variable "db_username" {}

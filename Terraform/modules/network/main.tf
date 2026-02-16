@@ -7,7 +7,8 @@ resource "aws_vpc" "main" {
   enable_dns_support   = true
 
   tags = {
-    Name = "${var.prefix}-eks-vpc"
+    Name        = "${var.prefix}-eks-vpc"
+    Environment = "${var.prefix}-production"
   }
 }
 
@@ -18,6 +19,7 @@ resource "aws_internet_gateway" "igw" {
 
   tags = {
     Name                                        = "${var.prefix}-eks-igw"
+    Environment                                 = "${var.prefix}-production"
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
   depends_on = [aws_vpc.main]
@@ -32,6 +34,7 @@ resource "aws_subnet" "priv_zone_1" {
 
   tags = {
     Name                                        = "${var.prefix}-eks-priv-sub-1"
+    Environment                                 = "${var.prefix}-production"
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
     "kubernetes.io/role/internal-elb"           = "1"
   }
@@ -45,6 +48,7 @@ resource "aws_subnet" "priv_zone_2" {
 
   tags = {
     Name                                        = "${var.prefix}-eks-priv-sub-2"
+    Environment                                 = "${var.prefix}-production"
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
     "kubernetes.io/role/internal-elb"           = "1"
   }
@@ -59,6 +63,7 @@ resource "aws_subnet" "pub_zone_1" {
 
   tags = {
     Name                                        = "${var.prefix}-eks-pub-sub-1"
+    Environment                                 = "${var.prefix}-production"
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
     "kubernetes.io/role/elb"                    = "1"
   }
@@ -73,6 +78,7 @@ resource "aws_subnet" "pub_zone_2" {
 
   tags = {
     Name                                        = "${var.prefix}-eks-pub-sub-2"
+    Environment                                 = "${var.prefix}-production"
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
     "kubernetes.io/role/elb"                    = "1"
   }
@@ -85,7 +91,8 @@ resource "aws_eip" "eip" { #static ip for nat gateway
   domain = "vpc"
 
   tags = {
-    Name = "${var.prefix}-eks-nat-eip"
+    Name        = "${var.prefix}-eks-nat-eip"
+    Environment = "${var.prefix}-production"
   }
   depends_on = [aws_vpc.main]
 }
@@ -96,7 +103,8 @@ resource "aws_nat_gateway" "natgw" {
 
 
   tags = {
-    Name = "${var.prefix}-eks-nat-gateway"
+    Name        = "${var.prefix}-eks-nat-gateway"
+    Environment = "${var.prefix}-production"
   }
   depends_on = [aws_vpc.main, aws_eip.eip, aws_internet_gateway.igw]
 }
@@ -112,7 +120,8 @@ resource "aws_route_table" "private" {
   }
 
   tags = {
-    Name = "${var.prefix}-eks-priv-route-table"
+    Name        = "${var.prefix}-eks-priv-route-table"
+    Environment = "${var.prefix}-production"
   }
   depends_on = [aws_vpc.main]
 }
@@ -126,7 +135,8 @@ resource "aws_route_table" "public" {
   }
 
   tags = {
-    Name = "${var.prefix}-eks-pub-route-table"
+    Name        = "${var.prefix}-eks-pub-route-table"
+    Environment = "${var.prefix}-production"
   }
   depends_on = [aws_vpc.main]
 }

@@ -3,7 +3,8 @@ resource "aws_db_subnet_group" "default" {
   subnet_ids = var.subnet_ids
 
   tags = {
-    Name = "${var.prefix}-db-subnet-group"
+    Name        = "${var.prefix}-db-subnet-group"
+    Environment = "${var.prefix}-production"
   }
 }
 
@@ -21,7 +22,8 @@ resource "aws_db_instance" "db" {
   db_subnet_group_name   = aws_db_subnet_group.default.name
 
   tags = {
-    Name = "${var.prefix}-eks-db"
+    Name        = "${var.prefix}-eks-db"
+    Environment = "${var.prefix}-production"
   }
 }
 
@@ -32,7 +34,8 @@ resource "aws_security_group" "rds_sg" {
   vpc_id      = var.vpc_id
 
   tags = {
-    Name = "${var.prefix}-rds-sg"
+    Name        = "${var.prefix}-rds-sg"
+    Environment = "${var.prefix}-production"
   }
 }
 

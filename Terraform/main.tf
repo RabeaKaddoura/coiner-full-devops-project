@@ -83,7 +83,8 @@ module "eks" {
   }
 
   tags = {
-    Name = "${var.prefix}-eks-cluster"
+    Name        = "${var.prefix}-eks-cluster"
+    Environment = "${var.prefix}-production"
   }
 }
 
@@ -186,6 +187,7 @@ module "postgres" {
 
 module "secret_store" {
   source      = "./modules/secret-store"
+  prefix      = var.prefix
   secret_name = var.secret_name
   db_name     = module.postgres.db_name
   db_username = module.postgres.db_username
