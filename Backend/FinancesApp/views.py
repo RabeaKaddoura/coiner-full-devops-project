@@ -18,7 +18,7 @@ class MyTokenObtainPairView(TokenObtainPairView): #overriding TokenObtainPairVie
     serializer_class = MyTokenObtainPairSerializer
       
 
-class WalletList(generics.ListCreateAPIView): #list of all wallets for a certain user. GET is built-in, so no need to define it unless to override
+class WalletList(generics.ListCreateAPIView): #list of all wallets for a certain user. GET is built-in. No need to define it unless to override
                   
     serializer_class = WalletSerializer
     permission_classes = [IsAuthenticated]

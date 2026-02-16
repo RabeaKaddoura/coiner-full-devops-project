@@ -28,6 +28,8 @@ __pycache__/
 
 
 #frontend 
+./Frontend/Finances-App/src/components/auth.js
+./Frontend/Finances-App/src/api.js
 
 # Logs
 logs
@@ -60,7 +62,5 @@ coverage
 
 *.tsbuildinfo
 
-Frontend/src/components/auth.js
-Frontend/src/api.js
 
 

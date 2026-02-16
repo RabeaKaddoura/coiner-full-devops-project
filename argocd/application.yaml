@@ -1,5 +1,5 @@
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: ApplicationSet #ArgoCD configuration definition file. Points ArgoCD to github repo as the source of truth to update existing eks cluster.
 metadata:
   name: apps
   namespace: argocd

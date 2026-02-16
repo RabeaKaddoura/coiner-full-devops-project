@@ -71,7 +71,7 @@ onMounted(async () => { //fetching transactions and goals
 
 
 const chartData = computed(() => ({
-  labels: labels.value, // 
+  labels: labels.value, 
   datasets: [
     {
       label: 'Income',

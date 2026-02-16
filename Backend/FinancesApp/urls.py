@@ -4,7 +4,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
   path("register/", CreateUserView.as_view(), name="Register"),
-  path("token/", MyTokenObtainPairView.as_view(), name="Token"), #this is basically a log-in url
+  path("token/", MyTokenObtainPairView.as_view(), name="Token"), #log-in url
   path("refresh_token/", TokenRefreshView.as_view(), name="Refresh"), 
   
   path("wallet/", WalletList.as_view(), name="Wallets"), 
