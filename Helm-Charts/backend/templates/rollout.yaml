@@ -1,22 +1,22 @@
-apiVersion: argoproj.io/v1alpha1 #new
-kind: Rollout #new
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: django-deployment
 spec:
-  replicas: 3 #new, total replicas for stable + canary
-  strategy: #new
-    canary: #new
-      steps: #new
-        - setWeight: 20 #new
-        - pause: {duration: 2m} #new
-        - setWeight: 50 #new
-        - pause: {duration: 2m} #new
-      stableService: django-backend-stable #new
-      canaryService: django-backend-canary #new
-      trafficRouting: #new
-        alb: #new (if using ALB ingress) #new
-          ingress: alb-ingress #new, your existing ingress name
-          servicePort: 8000 #new
+  replicas: 3 #total replicas for stable + canary
+  strategy:
+    canary:
+      steps:
+        - setWeight: 20 #send 20% of traffic to new version first
+        - pause: {duration: 2m} #then wait 2 minutes ...
+        - setWeight: 50 #raise to 50%...
+        - pause: {duration: 2m} #wait 2 more minutes before 100% of pods become the new version
+      stableService: django-backend-stable #services stable pods
+      canaryService: django-backend-canary #services new canary pods (new pod version, say after updating the app)
+      trafficRouting:
+        alb:
+          ingress: alb-ingress
+          servicePort: 8000
 
   selector:
     matchLabels:

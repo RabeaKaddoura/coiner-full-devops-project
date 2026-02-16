@@ -13,7 +13,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: django-backend-canary #new
+  name: django-backend-canary
 spec:
   type: ClusterIP
   selector:
