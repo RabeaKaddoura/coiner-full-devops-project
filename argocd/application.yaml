@@ -9,7 +9,7 @@ spec:
         repoURL: https://github.com/RabeaKaddoura/coiner-full-devops-project.git
         revision: HEAD
         directories:
-          - path: helm-charts/*
+          - path: Helm-Charts/*
   template:
     metadata:
       name: "{{path.basename}}"

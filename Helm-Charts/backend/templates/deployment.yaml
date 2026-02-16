@@ -1,8 +1,23 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1 #new
+kind: Rollout #new
 metadata:
   name: django-deployment
 spec:
+  replicas: 3 #new, total replicas for stable + canary
+  strategy: #new
+    canary: #new
+      steps: #new
+        - setWeight: 20 #new
+        - pause: {duration: 2m} #new
+        - setWeight: 50 #new
+        - pause: {duration: 2m} #new
+      stableService: django-backend-stable #new
+      canaryService: django-backend-canary #new
+      trafficRouting: #new
+        alb: #new (if using ALB ingress) #new
+          ingress: alb-ingress #new, your existing ingress name
+          servicePort: 8000 #new
+
   selector:
     matchLabels:
       app: django-backend

@@ -5,6 +5,18 @@ metadata:
 spec:
   type: ClusterIP
   selector:
+    app: django-backend-stable
+  ports:
+    - port: 8000
+      targetPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-backend-canary #new
+spec:
+  type: ClusterIP
+  selector:
     app: django-backend
   ports:
     - port: 8000
