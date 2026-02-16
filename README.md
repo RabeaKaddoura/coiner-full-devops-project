@@ -316,6 +316,10 @@ This project showcases industry-standard DevOps practices:
 - ✅ **Automated Testing** in CI pipeline
 
 
+> **📝 Important Notes:**
+> - **Helm Repository Best Practice:** In production, Helm charts should be maintained in a separate repository from application code. This project keeps them together for portfolio demonstration purposes.
+> - **Manual Tool Deployment:** ArgoCD, Argo Rollouts, Prometheus, and Grafana were deployed manually using kubectl/Helm commands rather than through Terraform. 
+
 
 ## 👨‍💻 Author
 
