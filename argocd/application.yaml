@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: apps
+  namespace: argocd
+spec:
+  generators:
+    - git: #git generator to generate template parameters using the repo's folder structure. Utilized to create helm charts existing in multiple subfolders
+        repoURL: https://github.com/RabeaKaddoura/coiner-full-devops-project.git
+        revision: HEAD
+        directories:
+          - path: helm-charts/*
+  template:
+    metadata:
+      name: "{{path.basename}}"
+
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/RabeaKaddoura/coiner-full-devops-project.git
+        targetRevision: HEAD
+        path: "{{path}}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: webapp
+
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true

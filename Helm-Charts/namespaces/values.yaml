@@ -1,2 +1,5 @@
 main:
   namespace: webapp
+
+argo:
+  namespace: argocd
