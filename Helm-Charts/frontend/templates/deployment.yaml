@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vue-deployment
+  namespace: webapp
 spec:
   replicas: {{.Values.depl.replicas}}
   selector:

@@ -2,17 +2,18 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: django-hpa
+  namespace: webapp
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
     name: django-deployment
-  minReplicas: {{ .Values.hpa.minReplicas }}
-  maxReplicas: {{ .Values.hpa.maxReplicas }}
+  minReplicas: {{.Values.hpa.minReplicas}}
+  maxReplicas: {{.Values.hpa.maxReplicas}}
   metrics:
     - type: Resource
       resource:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: {{ .Values.hpa.targetCPU }}
+          averageUtilization: {{.Values.hpa.targetCPU}}
