@@ -3,4 +3,4 @@ kind: ServiceAccount
 metadata:
   name: backend-sa
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::844586871941:role/coiner-secrets-csi-role #edit
+    eks.amazonaws.com/role-arn: arn:aws:iam::844586871941:role/coiner-secrets-csi-role
