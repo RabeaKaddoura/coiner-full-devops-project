@@ -25,11 +25,9 @@ This project demonstrates a complete end-to-end DevOps workflow from developer c
 - [CI/CD Pipeline](#-cicd-pipeline)
 - [Application Features](#-application-features)
 - [Database Design](#-database-design)
-- [Repository Structure](#-repository-structure)
-- [Getting Started](#-getting-started)
 - [Scaling & Reliability](#-scaling--reliability)
 - [DevOps Practices](#-devops-practices-demonstrated)
-- [Future Improvements](#-future-improvements)
+
 
 ---
 
