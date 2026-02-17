@@ -1,4 +1,4 @@
-# 💰 Coiner - Personal Finance Manager – End-To-End DevOps Project
+# 3-Tier Personal Finance Manager – End-To-End DevOps Project
 
 ![AWS](https://img.shields.io/badge/AWS-Cloud-orange?logo=amazon-aws)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-EKS-blue?logo=kubernetes)
@@ -6,7 +6,7 @@
 ![ArgoCD](https://img.shields.io/badge/GitOps-ArgoCD-orange?logo=argo)
 ![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-blue?logo=postgresql)
 
-A production-grade Personal Finance Management Web Application deployed on AWS using modern DevOps practices including Infrastructure as Code, GitOps, Kubernetes, Canary Deployments, and comprehensive monitoring.
+A production-grade Personal Finance Management Web Application (Coiner) deployed on AWS using modern DevOps practices including Infrastructure as Code, GitOps, Kubernetes, Canary Deployments, and comprehensive monitoring.
 
 This project demonstrates a complete end-to-end DevOps workflow from developer commit to production deployment inside a secure AWS environment.
 
