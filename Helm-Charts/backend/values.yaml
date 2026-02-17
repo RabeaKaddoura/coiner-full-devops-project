@@ -14,6 +14,6 @@ hpa:
 
 backendSecret:
   DJANGO_SECRET_KEY: "secret_key"
-  DJANGO_ALLOWED_HOSTS: "*" #edit
+  DJANGO_ALLOWED_HOSTS: "http://k8s-webapp-albingre-9b8ec7c124-1720660507.us-east-1.elb.amazonaws.com" #edit
   CORS_ALLOWED_ORIGINS: "http://localhost:8080,http://k8s-webapp-albingre-9b8ec7c124-1720660507.us-east-1.elb.amazonaws.com" #edit
 
