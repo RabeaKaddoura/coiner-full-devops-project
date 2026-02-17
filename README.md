@@ -1,4 +1,4 @@
-# 3-Tier Personal Finance Manager – End-To-End DevOps Project
+# 3-Tier Personal Finance Manager – End-to-End DevOps Project
 
 ![AWS](https://img.shields.io/badge/AWS-Cloud-orange?logo=amazon-aws)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-EKS-blue?logo=kubernetes)
