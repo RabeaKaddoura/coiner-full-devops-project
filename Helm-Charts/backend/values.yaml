@@ -13,7 +13,7 @@ hpa:
   targetCPU: 70
 
 backendSecret:
-  DJANGO_SECRET_KEY: "*5!b1h!(_7y1%8*w+stns0=_zvl+#%1w-%zgir5!)=6t5h2huh"
+  DJANGO_SECRET_KEY: "secret_key"
   DJANGO_ALLOWED_HOSTS: "*" #edit
   CORS_ALLOWED_ORIGINS: "http://localhost:8080,http://k8s-webapp-albingre-9b8ec7c124-1720660507.us-east-1.elb.amazonaws.com" #edit
 
