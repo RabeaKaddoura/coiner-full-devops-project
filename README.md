@@ -326,5 +326,5 @@ This project showcases industry-standard DevOps practices:
 **Rabea Kaddoura**  
 DevOps Engineer | Cloud Enthusiast
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)]([[YOUR_LINKEDIN_URL](https://www.linkedin.com/in/rabea-kaddoura-3ab858228/?isSelfProfile=true)](https://www.linkedin.com/in/rabea-kaddoura-3ab858228/))
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)](https://www.linkedin.com/in/rabea-kaddoura-3ab858228/)
 
